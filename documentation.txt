@@ -1,0 +1,53 @@
+Page Replacement Simulator Documentation
+========================================
+
+Overview:
+---------
+This program implements various page replacement strategies to manage memory in simulated processes. It uses classes to encapsulate different strategies and provides a framework for simulating page faults based on predefined access sequences.
+
+Key Components:
+----------------
+1. Process Structure:
+   - Contains details about each simulated process, including its ID, total pages, a sequence of page accesses, a stack to simulate pages in memory, a page table, and a fault count.
+
+2. PageReplacementStrategy (Abstract Base Class):
+   - A virtual base class that defines a common interface for all page replacement strategies. Each strategy must implement the handlePageFault method.
+
+3. Specific Strategies:
+   - WorkingSetStrategy: Manages page replacement based on a moving window of recent page accesses.
+   - LRU_X_Strategy: Implements the Least Recently Used strategy considering the last 'X' accesses.
+   - LFUStrategy: Implements the Least Frequently Used strategy.
+   - OPTLookaheadStrategy: Uses a lookahead mechanism to predict future page requests.
+   - MRUStrategy: Manages the Most Recently Used pages.
+   - LIFOStrategy: Implements a Last In, First Out strategy.
+
+4. SimulationConfig Structure:
+   - Holds configuration settings for the simulation, including the number of page frames, page size, and specific strategy details.
+
+5. Parsing and Simulation:
+   - Includes functions to parse configuration from an input stream and to simulate page faults using the chosen page replacement strategy.
+
+Functionality:
+--------------
+- The simulator reads configuration settings and page access sequences from an input file.
+- For each strategy, it simulates page faults and outputs the number of faults incurred by each process.
+- Supports multiple strategies to compare their effectiveness in different scenarios.
+
+Usage:
+------
+1. Compile the program with a C++ compiler supporting C++11 or later.
+2. Prepare an input file 'input.txt' in the specified format:
+   - Total number of page frames, page size, frames per process or delta, lookahead or window size, min and max free pool sizes, number of processes, followed by the page access sequences for each process.
+3. Run the program. The output will include the number of page faults for each process under each strategy.
+
+Sample Output:
+--------------
+The output will display the total faults encountered under each strategy and the specific faults per process. Additionally, it provides a summary of the total replacements made during the simulation.
+
+Notes:
+------
+- The program requires error-free input data in the correct format to function properly.
+- The program's output is dependent on the page access patterns and the total pages available for each process.
+
+End of Documentation
+--------------------
